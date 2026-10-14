@@ -21,8 +21,15 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 # CSS (kept inside the page body; Shopify keeps <style> when saved via API)
 # ---------------------------------------------------------------------------
 CSS = r"""
-.cca{--ink:#111;--ink2:#3d3d3d;--mute:#7d7d7d;--line:#e8e8e6;--panel:#f5f5f2;--dark:#121212;--red:#a02222;--r:24px;
-font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 auto;padding:0 0 64px;-webkit-font-smoothing:antialiased;text-align:left}
+.cca{--ink:#111;--ink2:#3d3d3d;--mute:#7d7d7d;--line:#e8e8e6;--panel:#f5f5f2;--dark:#121212;--red:#a02222;--r:24px;--cca-g:max(16px,calc((100vw - 24px - 1360px) / 2));
+font-family:inherit;color:var(--ink);line-height:1.6;box-sizing:border-box;width:calc(100vw - 24px);max-width:none;margin:0 0 0 calc(50% - 50vw + 12px);padding:0 var(--cca-g) 64px;-webkit-font-smoothing:antialiased;text-align:left}
+@media (min-width:750px){.cca{--cca-g:max(40px,calc((100vw - 24px - 1360px) / 2))}}
+.cca-panel-intro{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 48px;margin:0 0 8px}
+.cca-panel-intro .cca-p{max-width:none}
+.cca-p.cca-wide{max-width:80ch}
+.cca-2col .cca-roles{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0}
+.cca a{text-decoration:none}
+.cca-mt26{margin-top:26px}.cca-mb26{margin-bottom:26px}.cca-mb28{margin-bottom:28px}
 .cca *{box-sizing:border-box}
 .cca :where(h2,h3,h4,p,ul,li){margin:0;padding:0}
 .cca :where(ul){list-style:none}
@@ -37,7 +44,7 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-eye{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 22px}
 .cca-eye::before{content:'';flex:none;width:7px;height:7px;border-radius:50%;background:var(--red)}
 .cca-eye b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
-.cca-t{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.025em;line-height:1.08;text-wrap:balance;max-width:26ch;margin:0 0 22px;text-transform:none}
+.cca-t{font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:800;letter-spacing:-.025em;line-height:1.08;text-wrap:balance;max-width:26ch;margin:0 0 22px;text-transform:none;color:var(--ink)}
 .cca-t .cca-brand{text-transform:none}
 .cca-lead{font-size:clamp(1.05rem,1.5vw,1.22rem);line-height:1.55;color:var(--ink2);max-width:60ch;margin:0 0 18px}
 .cca-p{font-size:16.5px;line-height:1.65;color:var(--ink2);max-width:62ch;margin:0 0 18px}
@@ -65,7 +72,7 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 /* hero */
 .cca-hero{padding:28px 0 56px}
 .cca-kicker{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 26px}
-.cca-h1{font-size:clamp(3rem,8.2vw,6.4rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin:0 0 34px;text-transform:none}
+.cca-h1{font-size:clamp(3rem,8.2vw,6.4rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin:0 0 34px;text-transform:none;color:var(--ink)}
 .cca-h1 span{display:block}
 .cca-h1 .cca-outl{color:transparent;-webkit-text-stroke:2.5px var(--ink);text-stroke:2.5px var(--ink)}
 .cca-hero .cca-lead{font-size:clamp(1.1rem,1.8vw,1.35rem);max-width:52ch;margin-bottom:32px}
@@ -78,14 +85,14 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:36px 0 0}
 .cca-pillar{border:1px solid var(--line);border-radius:var(--r);padding:30px 28px 30px;background:#fff;display:flex;flex-direction:column;gap:14px;transition:transform .2s ease,box-shadow .2s ease}
 .cca-pillar:hover{transform:translateY(-2px);box-shadow:0 14px 34px -22px rgba(0,0,0,.35)}
-.cca-pillar h3{font-size:1.75rem;font-weight:800;letter-spacing:-.03em;line-height:1;text-transform:none}
+.cca-pillar h3{font-size:1.75rem;font-weight:800;letter-spacing:-.03em;line-height:1;text-transform:none;color:var(--ink)}
 .cca-pillar .cca-sub{font-size:15.5px;font-weight:600;color:var(--ink);line-height:1.45}
 .cca-pillar ul{display:flex;flex-direction:column;gap:10px;margin:4px 0 6px}
 .cca-pillar li{position:relative;padding-left:24px;font-size:14.5px;line-height:1.55;color:var(--ink2)}
 .cca-pillar li::before{content:'';position:absolute;left:0;top:9px;width:12px;height:7px;border-left:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(-45deg)}
 .cca-pillar .cca-link{margin-top:auto;align-self:flex-start}
 .cca-pillar-dark{background:var(--dark);color:#fff;border-color:var(--dark)}
-.cca-pillar-dark .cca-sub{color:#fff}
+.cca-pillar-dark h3,.cca-pillar-dark .cca-sub{color:#fff}
 .cca-pillar-dark li{color:#c9c9c9}
 .cca-pillar-dark li::before{border-color:#fff}
 .cca-pillar-dark .cca-link{color:#fff;border-color:#fff}
@@ -99,9 +106,10 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-steps::before{content:'';position:absolute;left:28px;right:28px;top:27px;height:1px;background:var(--line)}
 .cca-step{position:relative;background:#fff;border:1px solid var(--line);border-radius:20px;padding:0 24px 26px}
 .cca-step-n{position:relative;display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:#fff;border:1px solid var(--ink);font-weight:800;font-size:15px;letter-spacing:-.02em;margin:0 0 18px;transform:translateY(-1px);font-variant-numeric:tabular-nums}
-.cca-step h3{font-size:1.05rem;font-weight:700;line-height:1.3;margin:0 0 10px;text-transform:none}
+.cca-step h3{font-size:1.05rem;font-weight:700;line-height:1.3;margin:0 0 10px;text-transform:none;color:var(--ink)}
 .cca-step p{font-size:14.5px;line-height:1.55;color:var(--ink2)}
 .cca-step-dark{background:var(--dark);border-color:var(--dark);color:#fff}
+.cca-step-dark h3{color:#fff}
 .cca-step-dark .cca-step-n{background:#fff;color:var(--ink);border-color:#fff}
 .cca-step-dark p{color:#c9c9c9}
 .cca-step-loop{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9a9a9a}
@@ -117,7 +125,7 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-tl li::before{content:'';position:absolute;left:-28px;top:9px;width:15px;height:15px;border-radius:50%;background:#fff;border:1.5px solid var(--ink)}
 .cca-tl li:last-child::before{background:var(--ink)}
 .cca-tl-k{display:block;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:0 0 6px;font-variant-numeric:tabular-nums}
-.cca-tl h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:0 0 8px;text-transform:none}
+.cca-tl h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin:0 0 8px;text-transform:none;color:var(--ink)}
 .cca-tl p{font-size:15.5px;line-height:1.6;color:var(--ink2);max-width:56ch}
 
 /* dark panel */
@@ -132,6 +140,7 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-hub-box p{font-size:14px;line-height:1.5;color:#e2e2e2}
 .cca-hub-core{background:#fff;color:var(--ink);border-color:#fff;text-align:center}
 .cca-hub-core h4{color:var(--mute)}
+.cca-hub-core .cca-hub-name{color:var(--ink)}
 .cca-hub-core .cca-hub-name{font-size:1.5rem;font-weight:800;letter-spacing:-.03em;line-height:1;margin:0 0 10px;text-transform:none}
 .cca-hub-core p{color:var(--ink2);font-size:13.5px}
 .cca-hub-arrow{width:44px;height:1px;background:rgba(255,255,255,.4);position:relative}
@@ -141,7 +150,7 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:18px;overflow:hidden}
 .cca-aud li{background:var(--dark);padding:26px 24px 26px;display:flex;flex-direction:column;gap:10px;transition:background .18s ease}
 .cca-aud li:hover{background:#1c1c1c}
-.cca-aud h3{font-size:1.02rem;font-weight:700;letter-spacing:-.005em;text-transform:none}
+.cca-aud h3{font-size:1.02rem;font-weight:700;letter-spacing:-.005em;text-transform:none;color:#fff}
 .cca-aud p{font-size:14px;line-height:1.55;color:#bdbdbd;flex:1}
 .cca-aud .cca-link{align-self:flex-start;font-size:13px}
 
@@ -155,12 +164,12 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 /* engine */
 .cca-eng{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:34px 0 0}
 .cca-eng-col{border:1px solid var(--line);border-radius:20px;padding:26px 26px 28px;background:#fff}
-.cca-eng-col h3{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 16px}
+.cca-eng-col h3{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 16px;line-height:1.4}
 .cca-eng-col li{position:relative;padding:12px 0 12px 30px;border-top:1px solid var(--line);font-size:15px;line-height:1.5;color:var(--ink2)}
 .cca-eng-col li:last-child{padding-bottom:0}
 .cca-eng-col li::before{content:'';position:absolute;left:2px;top:19px;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--ink)}
 .cca-valid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:24px 48px;align-items:start;margin:18px 0 0;background:var(--panel);border-radius:20px;padding:32px 30px 34px}
-.cca-valid h3{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;line-height:1.15;text-transform:none}
+.cca-valid h3{font-size:1.4rem;font-weight:800;letter-spacing:-.02em;line-height:1.15;text-transform:none;color:var(--ink)}
 .cca-valid p{font-size:15.5px;line-height:1.6;color:var(--ink2)}
 .cca-valid p+p{margin-top:12px}
 .cca-badge-note{display:flex;align-items:center;gap:14px;margin:26px 0 0;font-size:14px;color:var(--ink2)}
@@ -175,7 +184,7 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-tool-i svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .cca-tag{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mute)}
 .cca-tag-pro{background:var(--ink);border-color:var(--ink);color:#fff}
-.cca-tool h3{font-size:1rem;font-weight:700;line-height:1.3;text-transform:none}
+.cca-tool h3{font-size:1rem;font-weight:700;line-height:1.3;text-transform:none;color:var(--ink)}
 .cca-tool p{font-size:13.8px;line-height:1.55;color:var(--ink2);flex:1}
 .cca-tool .cca-link{font-size:13px;align-self:flex-start}
 
@@ -184,7 +193,7 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-eco li{border:1px solid var(--line);border-radius:20px;padding:24px 22px 24px;background:#fff}
 .cca-eco-i{width:40px;height:40px;border-radius:12px;background:var(--panel);display:grid;place-items:center;margin:0 0 14px}
 .cca-eco-i svg{width:20px;height:20px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.cca-eco h3{font-size:1rem;font-weight:700;margin:0 0 8px;text-transform:none}
+.cca-eco h3{font-size:1rem;font-weight:700;margin:0 0 8px;text-transform:none;color:var(--ink)}
 .cca-eco p{font-size:14.5px;line-height:1.55;color:var(--ink2)}
 
 /* team */
@@ -215,6 +224,7 @@ font-family:inherit;color:var(--ink);line-height:1.6;max-width:1120px;margin:0 a
 .cca-hub-arrow::after{left:-4px;top:auto;bottom:0;transform:rotate(135deg)}
 .cca-aud{grid-template-columns:repeat(2,minmax(0,1fr))}
 .cca-2col{grid-template-columns:1fr;gap:18px}
+.cca-panel-intro{grid-template-columns:1fr}
 .cca-sticky{position:static}
 .cca-final{grid-template-columns:1fr}
 }
@@ -767,6 +777,21 @@ BRANDS = [('NIKA', '/pages/nika-hair-beauty-excellence'),
 
 
 # ---------------------------------------------------------------------------
+
+def important(css):
+    """Append !important to every declaration: the theme's .rte / .page-content rules have a higher
+    specificity than our classes and would otherwise override margins, list padding, heading colours
+    and link colours (verified on the live theme, 14.10.2026)."""
+    def fix_block(m):
+        out = []
+        for d in m.group(1).split(';'):
+            d = d.strip()
+            if not d:
+                continue
+            out.append(d if '!important' in d else d + '!important')
+        return '{' + ';'.join(out) + '}'
+    return re.sub(r'\{([^{}]*)\}', fix_block, css)
+
 def fr_typo(s):
     """French typography: non-breaking space before : ; ! ?"""
     return re.sub(r' ([:;!?])', ' \\1', s)
@@ -799,7 +824,7 @@ def build(lang):
     w = o.append
 
     w(f'<!-- cliCHair | ABOUT US page v2 (2026-10-14). Language: {lang.upper()}. One markup for EN/IT/DE/FR; internal links carry the language prefix. Edit via API only, never from the visual editor (it strips the style block). Source and generator: clichair/about-us/build.py in the BOS repository. -->')
-    w('<style>' + re.sub(r'\n+', '\n', CSS).strip() + '</style>')
+    w('<style>' + important(re.sub(r'\n+', '\n', CSS).strip()) + '</style>')
     w('<div class="cca">')
 
     # ---------------- HERO
@@ -866,7 +891,7 @@ def build(lang):
     for k, h, p in t['tl']:
         w(f'<li><span class="cca-tl-k">{k}</span><h3>{h}</h3><p>{p}</p></li>')
     w('</ul>')
-    w(f'<p class="cca-btns" style="margin-top:26px"><a class="cca-link" href="{L("/pages/updates")}">{t["s3_link"]}{ARROW}</a></p>')
+    w(f'<p class="cca-btns cca-mt26"><a class="cca-link" href="{L("/pages/updates")}">{t["s3_link"]}{ARROW}</a></p>')
     w('</div>')
     w('</div>')
     w('</section>')
@@ -876,8 +901,7 @@ def build(lang):
     w('<div class="cca-panel">')
     w(f'<p class="cca-eye"><b>04</b> {t["s4_eye"]}</p>')
     w(f'<h2 class="cca-t">{t["s4_t"]}</h2>')
-    w(f'<p class="cca-p">{t["s4_p1"]}</p>')
-    w(f'<p class="cca-p">{t["s4_p2"]}</p>')
+    w(f'<div class="cca-panel-intro"><p class="cca-p">{t["s4_p1"]}</p><p class="cca-p">{t["s4_p2"]}</p></div>')
     h0, h1, h2 = t['hub']
     w('<div class="cca-hub">')
     w(f'<div class="cca-hub-box"><h4>{h0[0]}</h4><p>{h0[1]}</p></div>')
@@ -886,7 +910,7 @@ def build(lang):
     w('<div class="cca-hub-arrow" aria-hidden="true"></div>')
     w(f'<div class="cca-hub-box"><h4>{h2[0]}</h4><p>{h2[1]}</p></div>')
     w('</div>')
-    w(f'<p class="cca-p" style="margin-bottom:28px">{t["s4_p3"]}</p>')
+    w(f'<p class="cca-p cca-wide cca-mb28">{t["s4_p3"]}</p>')
     w('<ul class="cca-aud">')
     for h, p, l, href in t['aud']:
         w(f'<li><h3>{h}</h3><p>{p}</p><a class="cca-link cca-link-w" href="{L(href)}">{l}{ARROW}</a></li>')
@@ -954,7 +978,7 @@ def build(lang):
     w('<div>')
     w(f'<p class="cca-p">{t["s8_p1"]}</p>')
     w(f'<p class="cca-p">{t["s8_p2"]}</p>')
-    w(f'<p class="cca-p" style="margin-bottom:26px">{t["s8_p3"]}</p>')
+    w(f'<p class="cca-p cca-mb26">{t["s8_p3"]}</p>')
     w(f'<p class="cca-btns"><a class="cca-btn cca-btn-dark" href="{L("/pages/pro-login")}">{t["s8_cta"]}</a></p>')
     w('</div>')
     w('</div>')
@@ -969,7 +993,7 @@ def build(lang):
     w('</div>')
     w('<div>')
     w(f'<p class="cca-p">{t["s9_p1"]}</p>')
-    w(f'<p class="cca-p" style="margin-bottom:26px">{t["s9_p2"]}</p>')
+    w(f'<p class="cca-p cca-mb26">{t["s9_p2"]}</p>')
     w(f'<p class="cca-btns"><a class="cca-link" href="{L("/pages/contact")}">{t["s9_link"]}{ARROW}</a></p>')
     w('</div>')
     w('</div>')
@@ -983,21 +1007,27 @@ def build(lang):
     for icon, h, p in t['eco']:
         w(f'<li><div class="cca-eco-i">{ICONS[icon]}</div><h3>{h}</h3><p>{p}</p></li>')
     w('</ul>')
-    w(f'<p class="cca-p" style="margin-bottom:26px">{t["s10_p"]}</p>')
+    w(f'<p class="cca-p cca-mb26">{t["s10_p"]}</p>')
     w(f'<p class="cca-btns"><a class="cca-link" href="{L("/pages/sustainability")}">{t["s10_link"]}{ARROW}</a></p>')
     w('</section>')
 
     # ---------------- 11 TEAM
     w('<section class="cca-s" id="cca-team">')
+    w('<div class="cca-2col">')
+    w('<div class="cca-sticky">')
     w(f'<p class="cca-eye"><b>11</b> {t["s11_eye"]}</p>')
     w(f'<h2 class="cca-t">{t["s11_t"]}</h2>')
+    w('</div>')
+    w('<div>')
     w('<ul class="cca-roles">')
     for b, s in t['roles']:
         w(f'<li><b>{b}</b><span>{s}</span></li>')
     w('</ul>')
     w(f'<p class="cca-p">{t["s11_p1"]}</p>')
-    w(f'<p class="cca-p" style="margin-bottom:26px">{t["s11_p2"]}</p>')
+    w(f'<p class="cca-p cca-mb26">{t["s11_p2"]}</p>')
     w(f'<p class="cca-btns"><a class="cca-btn cca-btn-dark" href="{L("/pages/contact")}">{t["s11_cta"]}</a></p>')
+    w('</div>')
+    w('</div>')
     w('</section>')
 
     # ---------------- 12 FINAL
@@ -1027,7 +1057,18 @@ html{{font-size:16px}}
 body{{margin:0;font-family:Inter,"Inter Display",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:#1a1a1a;background:#fff;font-size:14px;line-height:1.5}}
 .shell-h{{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 40px;border-bottom:1px solid #eee;font-weight:800;letter-spacing:-.03em}}
 .shell-h span{{font-size:12px;font-weight:500;color:#888;letter-spacing:0}}
-.shell-w{{max-width:1200px;margin:0 auto;padding:48px 40px 24px}}
+.shell-w{{max-width:752px;margin:0 auto;padding:48px 40px 24px}}
+/* theme rules that clashed with the page (copied from base.css / page-content block) */
+body{{--color:#1a1a1a}}
+h1,h2,h3,h4{{color:var(--color);font-family:inherit}}
+h2{{font-size:32px;line-height:1.1}} h3{{font-size:24px;line-height:1}} h4{{font-size:20px}}
+.rte :is(h1,h2,h3,h4,h5,h6){{margin-block:clamp(1.5rem,1em * 3.3,2.5rem) .25em}}
+.rte ul,.rte ol{{margin-block-start:0;padding-inline-start:1.5em}}
+.rte :is(ul,ol):not(:is(ul,ol) :is(ul,ol)){{margin-block-end:1em}}
+a{{color:currentcolor;text-decoration-color:transparent}}
+.page-content a{{color:currentcolor}}
+p:not(.h1) a:where(:not(.button)){{text-decoration-color:currentcolor}}
+:is(h1,h2,h3,h4,h5,h6,p) > a:hover{{color:rgb(26 26 26 / .7)}}
 .shell-t{{text-align:right;font-size:1.25rem;text-transform:uppercase;font-weight:900;margin:0 0 24px}}
 .shell-d{{height:1px;background:#1a1a1a;margin:0 0 25px}}
 .shell-f{{border-top:1px solid #eee;padding:28px 40px;color:#888;font-size:12px;display:flex;justify-content:space-between}}
@@ -1035,7 +1076,9 @@ body{{margin:0;font-family:Inter,"Inter Display",-apple-system,BlinkMacSystemFon
 </style></head><body>
 <div class="shell-h">cliCHair <span>preview shell (not the real theme)</span></div>
 <div class="shell-w"><h1 class="shell-t">{title}</h1><div class="shell-d"></div>
+<div class="page-content rte"><rte-formatter>
 {body}
+</rte-formatter></div>
 </div>
 <div class="shell-f"><span>cliCHair is a Brand of ÜLTIMA hair concept Sàrl</span><span>v3 r4.3.0.05</span></div>
 </body></html>"""

@@ -16,7 +16,7 @@ const browser = await chromium.launch();
 let failed = false;
 for (const lang of langs) {
   const url = 'file://' + path.join(here, 'preview', `about-us.${lang}.html`);
-  for (const [name, vp] of [['desktop', { width: 1280, height: 900 }], ['mobile', { width: 390, height: 844 }]]) {
+  for (const [name, vp] of [['desktop', { width: 1280, height: 900 }], ['wide', { width: 1920, height: 1000 }], ['mobile', { width: 390, height: 844 }]]) {
     const ctx = await browser.newContext({ viewport: vp, deviceScaleFactor: 1 });
     const page = await ctx.newPage();
     const errors = [];
