@@ -1,7 +1,7 @@
 # cliCHair · pagina "Chi siamo" (About us) v2 · 14.10.2026
 
 Riscrittura completa della pagina `about-us` (`gid://shopify/Page/686209073533`) nelle 4 lingue.
-Stato: **pronta, non ancora pubblicata**. La pagina live è invariata finché Francesco non approva il testo italiano.
+Stato: **pubblicata il 14.10.2026** (ok di Francesco): EN con `pageUpdate`, IT/DE/FR con `translationsRegister`, tutte `outdated: false`. Confronto fatto fra i corpi salvati su Shopify e i file in `dist/`: testi, CSS, 28 link e 30 icone identici (Shopify riformatta solo gli a capo e scrive `viewbox` in minuscolo, che i browser gestiscono).
 
 ## File
 
@@ -13,7 +13,7 @@ Stato: **pronta, non ancora pubblicata**. La pagina live è invariata finché Fr
 | `preview/*.html` | Anteprima locale con una cornice simile al tema (titolo pagina, divisore, footer). Non è il tema reale. |
 | `shot.mjs` | Screenshot Playwright desktop 1280 e mobile 390, con controlli numerici (scroll orizzontale, errori JS). |
 | `shots/*.png` | Screenshot a pagina intera delle 4 lingue. |
-| `backup-2026-10-14/` | Corpo live EN e IT prima della modifica (DE e FR restano leggibili su Shopify finché la pagina non viene sovrascritta: salvarli prima di pubblicare). |
+| `backup-2026-10-14/` | Corpo live delle 4 lingue prima della modifica (versione del 25.09.2026). |
 
 Rigenerare: `python3 build.py && node shot.mjs`.
 
@@ -41,7 +41,7 @@ Numeri che dipendono dalla policy di spedizione e dal footer (da aggiornare insi
 - "ti passa alla persona giusta" → "passa la mano al nostro team" (modello AI-first del 9.10.2026, nessuna persona nominata).
 - Il claim "+20% di margine" resta fuori da questa pagina (appartiene a /pages/professionals).
 
-## Pubblicazione (dopo l'ok di Francesco)
+## Pubblicazione (procedura usata il 14.10.2026, da ripetere a ogni modifica)
 
 1. Salvare i backup DE e FR (`translatableResource.translations(locale:)`).
 2. `pageUpdate(id, page: {body: $body})` con il contenuto di `dist/about-us.en.html` nella variabile `$body`.
